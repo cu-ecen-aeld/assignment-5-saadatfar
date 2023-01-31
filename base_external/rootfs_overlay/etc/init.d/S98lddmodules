@@ -1,0 +1,19 @@
+case "$1" in
+	start)
+		echo "Loadin LDD"
+		./usr/bin/ldd/scull_load
+		./usr/bin/ldd/module_load faulty
+		modprobe hello
+		;;
+	stop)
+		echo "Unloading LDD"
+		./usr/bin/ldd/scull_unload
+		./usr/bin/ldd/module_unload faulty
+		rmmod hello
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		exit -1
+esac
+
+exit 0
